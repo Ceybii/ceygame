@@ -11,7 +11,9 @@ const { video, lazy = true } = Astro.props;
 ---
 
 <a
-  href={`/videos/${video.id}`}
+  href={`https://www.youtube.com/watch?v=${video.id}`}
+  target="_blank"
+  rel="noopener noreferrer"
   class="group block bg-dark-surface rounded-lg overflow-hidden hover:ring-2 hover:ring-accent transition-all duration-300 hover:scale-[1.02]"
 >
   <!-- Thumbnail -->
