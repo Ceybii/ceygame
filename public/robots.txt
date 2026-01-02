@@ -1,0 +1,11 @@
+# robots.txt for ceygame.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ceygame.com/sitemap-index.xml
+
+# Disallow admin/private paths (if any in future)
+# Disallow: /admin/
+

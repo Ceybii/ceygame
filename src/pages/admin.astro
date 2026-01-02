@@ -1,0 +1,90 @@
+---
+// Admin panel redirect/wrapper page
+---
+
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Ceygame Admin</title>
+  
+  <!-- Identity Widget (Netlify Identity için) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <style>
+    /* Custom styling */
+    :root {
+      --primary: #00ffff;
+      --primaryLight: #66ffff;
+      --primaryDark: #00cccc;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <script is:inline>
+    // CMS Config (inline)
+    window.CMS_MANUAL_INIT = true;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const config = {
+        backend: {
+          name: 'test-repo'
+        },
+        media_folder: 'public/blog',
+        public_folder: '/blog',
+        locale: 'tr',
+        collections: [
+          {
+            name: 'blog',
+            label: 'Blog Yazıları',
+            folder: 'src/content/blog',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Başlık', name: 'title', widget: 'string' },
+              { label: 'Açıklama', name: 'description', widget: 'text' },
+              { label: 'Yayın Tarihi', name: 'pubDate', widget: 'datetime', date_format: 'DD.MM.YYYY', time_format: false },
+              { label: 'Yazar', name: 'author', widget: 'string', default: 'Ceybi' },
+              { label: 'Kapak Görseli', name: 'image', widget: 'image', required: false },
+              { label: 'Etiketler', name: 'tags', widget: 'list', default: [] },
+              { label: 'Taslak', name: 'draft', widget: 'boolean', default: false },
+              { label: 'İçerik', name: 'body', widget: 'markdown' }
+            ]
+          }
+        ]
+      };
+      
+      window.CMS.init({ config: config });
+      
+      console.log('Decap CMS initialized with inline config');
+    });
+    
+    // Local development için otomatik giriş
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      console.log('Local development mode - CMS loading...');
+    }
+    
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+

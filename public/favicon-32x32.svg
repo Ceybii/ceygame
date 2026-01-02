@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="grad32" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="32" height="32" rx="6" fill="#0a0e17"/>
+  
+  <!-- Simplified logo for small size -->
+  <path d="M 20 10 Q 24 10 24 14 Q 24 18 20 18" stroke="url(#grad32)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 12 10 Q 8 10 8 14 L 8 22 Q 8 26 12 26" stroke="url(#grad32)" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
+

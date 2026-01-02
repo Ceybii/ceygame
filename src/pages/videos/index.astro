@@ -1,0 +1,232 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_CONFIG } from '@lib/config';
+import { getBreadcrumbSchema } from '@lib/seo';
+
+const jsonLd = getBreadcrumbSchema([
+  { name: 'Ana Sayfa', url: SITE_CONFIG.url },
+  { name: 'Videolar', url: `${SITE_CONFIG.url}/videos` }
+]);
+---
+
+<BaseLayout
+  seo={{
+    title: 'Videolar',
+    description: 'Tüm gaming videolarımızı keşfedin. FPS oyunlarında taktikler, highlight\'lar, oyun incelemeleri ve daha fazlası.',
+  }}
+  jsonLd={jsonLd}
+>
+  <Header />
+  
+  <main class="container mx-auto px-4 py-12">
+    <!-- Page Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Tüm Videolar</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        FPS oyunlarında taktikler, highlight'lar, pro stratejiler ve daha fazlasını keşfedin.
+      </p>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="mb-8 flex flex-col sm:flex-row gap-4">
+      <div class="flex-1">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Video ara..."
+          class="w-full px-4 py-3 bg-dark-surface border border-dark-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+      </div>
+      <button
+        id="load-more"
+        class="px-6 py-3 bg-accent hover:bg-accent-dark text-dark-bg rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed hidden"
+      >
+        Daha Fazla Yükle
+      </button>
+    </div>
+
+    <!-- Videos Grid -->
+    <div id="videos-container">
+      <!-- Loading state -->
+      <div class="flex justify-center py-12">
+        <div class="relative w-16 h-16">
+          <div class="absolute top-0 left-0 w-full h-full border-4 border-accent/20 rounded-full"></div>
+          <div class="absolute top-0 left-0 w-full h-full border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { fetchLatestVideos } from '@lib/youtube';
+  import { SITE_CONFIG } from '@lib/config';
+  import type { YouTubeVideo } from '@lib/youtube';
+
+  let allVideos: YouTubeVideo[] = [];
+  let displayedVideos: YouTubeVideo[] = [];
+  let searchQuery = '';
+  const VIDEOS_PER_PAGE = 12;
+
+  async function loadAllVideos() {
+    const container = document.getElementById('videos-container');
+    if (!container) return;
+
+    try {
+      allVideos = await fetchLatestVideos(
+        SITE_CONFIG.youtube.apiKey,
+        SITE_CONFIG.youtube.channelId,
+        50 // Load more videos for the full list
+      );
+
+      displayedVideos = allVideos.slice(0, VIDEOS_PER_PAGE);
+      renderVideos(displayedVideos);
+
+      // Show load more button if there are more videos
+      const loadMoreBtn = document.getElementById('load-more');
+      if (loadMoreBtn && allVideos.length > VIDEOS_PER_PAGE) {
+        loadMoreBtn.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error('Failed to load videos:', error);
+      container.innerHTML = `
+        <div class="bg-red-500/10 border border-red-500/50 rounded-lg p-6 text-center">
+          <svg class="w-12 h-12 mx-auto text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 class="text-xl font-semibold text-white mb-2">Bir Hata Oluştu</h3>
+          <p class="text-gray-300 mb-4">Videolar yüklenirken bir hata oluştu. YouTube API anahtarınızın doğru yapılandırıldığından emin olun.</p>
+          <button onclick="window.location.reload()" class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors">Tekrar Dene</button>
+        </div>
+      `;
+    }
+  }
+
+  function renderVideos(videos: YouTubeVideo[]) {
+    const container = document.getElementById('videos-container');
+    if (!container) return;
+
+    if (videos.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-12">
+          <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          <p class="text-gray-400">
+            ${searchQuery ? 'Arama sonucu bulunamadı.' : 'Henüz video bulunamadı.'}
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6';
+
+    videos.forEach((video) => {
+      const card = document.createElement('a');
+      card.href = `/videos/${video.id}`;
+      card.className = 'group block bg-dark-surface rounded-lg overflow-hidden hover:ring-2 hover:ring-accent transition-all duration-300 hover:scale-[1.02]';
+
+      card.innerHTML = `
+        <div class="relative aspect-video overflow-hidden bg-dark-border">
+          <img
+            src="${video.thumbnail}"
+            alt="${video.title}"
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          ${video.duration ? `<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded">${video.duration}</div>` : ''}
+          <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
+            <svg class="w-16 h-16 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors">${video.title}</h3>
+          <div class="flex items-center justify-between text-sm text-gray-400">
+            <span>${new Date(video.publishedAt).toLocaleDateString('tr-TR')}</span>
+            ${video.viewCount ? `<span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>${video.viewCount}</span>` : ''}
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(grid);
+  }
+
+  function handleSearch() {
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    if (!searchInput) return;
+
+    searchQuery = searchInput.value.toLowerCase().trim();
+
+    if (!searchQuery) {
+      displayedVideos = allVideos.slice(0, VIDEOS_PER_PAGE);
+    } else {
+      const filtered = allVideos.filter(video =>
+        video.title.toLowerCase().includes(searchQuery) ||
+        video.description.toLowerCase().includes(searchQuery)
+      );
+      displayedVideos = filtered.slice(0, VIDEOS_PER_PAGE);
+    }
+
+    renderVideos(displayedVideos);
+
+    // Update load more button visibility
+    const loadMoreBtn = document.getElementById('load-more');
+    if (loadMoreBtn) {
+      const filteredTotal = searchQuery
+        ? allVideos.filter(v => v.title.toLowerCase().includes(searchQuery) || v.description.toLowerCase().includes(searchQuery)).length
+        : allVideos.length;
+      
+      if (displayedVideos.length < filteredTotal) {
+        loadMoreBtn.classList.remove('hidden');
+      } else {
+        loadMoreBtn.classList.add('hidden');
+      }
+    }
+  }
+
+  function loadMore() {
+    const currentLength = displayedVideos.length;
+    const filtered = searchQuery
+      ? allVideos.filter(v => v.title.toLowerCase().includes(searchQuery) || v.description.toLowerCase().includes(searchQuery))
+      : allVideos;
+    
+    const newVideos = filtered.slice(currentLength, currentLength + VIDEOS_PER_PAGE);
+    displayedVideos = [...displayedVideos, ...newVideos];
+    
+    renderVideos(displayedVideos);
+
+    // Hide button if no more videos
+    const loadMoreBtn = document.getElementById('load-more');
+    if (loadMoreBtn && displayedVideos.length >= filtered.length) {
+      loadMoreBtn.classList.add('hidden');
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    loadAllVideos();
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', handleSearch);
+    }
+
+    const loadMoreBtn = document.getElementById('load-more');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', loadMore);
+    }
+  });
+</script>
+

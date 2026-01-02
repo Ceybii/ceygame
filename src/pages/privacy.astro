@@ -1,0 +1,147 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<BaseLayout
+  seo={{
+    title: 'Gizlilik Politikası',
+    description: 'Ceygame gizlilik politikası. Kişisel verilerinizin nasıl toplandığı ve kullanıldığı hakkında bilgi.',
+    noindex: true,
+  }}
+>
+  <Header />
+  
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-white mb-6">Gizlilik Politikası</h1>
+      
+      <div class="bg-dark-surface rounded-lg p-8 prose prose-invert max-w-none">
+        <p class="text-gray-400 mb-8">
+          <strong>Son Güncelleme:</strong> {new Date().toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">1. Giriş</h2>
+        <p class="text-gray-300 mb-6">
+          Ceygame olarak, kullanıcılarımızın gizliliğine önem veriyoruz. Bu gizlilik politikası, 
+          web sitemizi ziyaret ettiğinizde hangi bilgilerin toplandığını ve nasıl kullanıldığını açıklar.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">2. Toplanan Bilgiler</h2>
+        
+        <h3 class="text-xl font-semibold text-white mb-3">2.1 Otomatik Olarak Toplanan Bilgiler</h3>
+        <p class="text-gray-300 mb-4">
+          Web sitemizi ziyaret ettiğinizde, tarayıcınız otomatik olarak bazı bilgileri gönderir:
+        </p>
+        <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+          <li>IP adresi</li>
+          <li>Tarayıcı türü ve versiyonu</li>
+          <li>Ziyaret tarihi ve saati</li>
+          <li>Görüntülenen sayfalar</li>
+          <li>Yönlendirme URL'si</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-white mb-3">2.2 YouTube API Kullanımı</h3>
+        <p class="text-gray-300 mb-6">
+          Web sitemiz YouTube Data API v3 kullanarak video içeriklerini gösterir. Bu işlem sırasında:
+        </p>
+        <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+          <li>API istekleri tarayıcınızdan (client-side) yapılır</li>
+          <li>Video verileri 10 dakika boyunca localStorage'da cache'lenir</li>
+          <li>Hiçbir kişisel veri sunucuya gönderilmez (statik hosting)</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-white mb-3">2.3 Forum Kullanımı</h3>
+        <p class="text-gray-300 mb-6">
+          Forum özelliğimiz Giscus (GitHub Discussions) veya Disqus gibi üçüncü parti hizmetler kullanır. 
+          Bu hizmetlerin kendi gizlilik politikaları vardır ve yorum yaptığınızda bu politikalar geçerli olur.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">3. Bilgilerin Kullanımı</h2>
+        <p class="text-gray-300 mb-6">
+          Toplanan bilgiler şu amaçlarla kullanılır:
+        </p>
+        <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+          <li>Web sitesinin işlevselliğini sağlamak</li>
+          <li>Kullanıcı deneyimini iyileştirmek</li>
+          <li>İstatistiksel analiz yapmak</li>
+          <li>Teknik sorunları tespit etmek ve çözmek</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-white mb-4">4. Çerezler (Cookies)</h2>
+        <p class="text-gray-300 mb-6">
+          Web sitemiz aşağıdaki amaçlarla çerezler kullanabilir:
+        </p>
+        <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+          <li><strong>localStorage:</strong> Video cache'leme ve tema tercihleri için</li>
+          <li><strong>Üçüncü Parti Çerezler:</strong> YouTube embed, forum widget'ları</li>
+        </ul>
+        <p class="text-gray-300 mb-6">
+          Tarayıcı ayarlarınızdan çerezleri yönetebilir veya engelleyebilirsiniz.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">5. Üçüncü Parti Hizmetler</h2>
+        <p class="text-gray-300 mb-4">
+          Web sitemiz şu üçüncü parti hizmetleri kullanır:
+        </p>
+        <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+          <li><strong>YouTube:</strong> Video içerikleri ve embed player</li>
+          <li><strong>Giscus/Disqus:</strong> Forum ve yorum sistemi</li>
+          <li><strong>Google Fonts (opsiyonel):</strong> Tipografi</li>
+        </ul>
+        <p class="text-gray-300 mb-6">
+          Bu hizmetlerin kendi gizlilik politikaları vardır ve kullanımınız bu politikalara tabidir.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">6. Veri Güvenliği</h2>
+        <p class="text-gray-300 mb-6">
+          Verilerinizin güvenliğini sağlamak için teknik ve organizasyonel önlemler alıyoruz. 
+          Web sitemiz HTTPS üzerinden sunulur. Ancak, internet üzerinden iletilen hiçbir verinin 
+          %100 güvenli olduğu garanti edilemez.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">7. Çocukların Gizliliği</h2>
+        <p class="text-gray-300 mb-6">
+          Web sitemiz 13 yaşın altındaki çocuklara yönelik değildir ve bilerek bu yaş grubundan 
+          kişisel bilgi toplamayız. Eğer 13 yaşından küçükseniz, ebeveyn veya vasi izni ile 
+          sitemizi kullanabilirsiniz.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">8. Haklarınız (KVKK)</h2>
+        <p class="text-gray-300 mb-4">
+          6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında:
+        </p>
+        <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+          <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+          <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+          <li>Kişisel verilerin işlenme amacını öğrenme</li>
+          <li>Kişisel verilerin yurtiçinde veya yurtdışında aktarıldığı üçüncü kişileri bilme</li>
+          <li>Kişisel verilerin eksik veya yanlış işlenmiş olması halinde düzeltilmesini isteme</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-white mb-4">9. Değişiklikler</h2>
+        <p class="text-gray-300 mb-6">
+          Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Değişiklikler bu sayfada 
+          yayınlandığında yürürlüğe girer. Önemli değişikliklerde kullanıcıları bilgilendireceğiz.
+        </p>
+
+        <h2 class="text-2xl font-bold text-white mb-4">10. İletişim</h2>
+        <p class="text-gray-300 mb-6">
+          Gizlilik politikamız hakkında sorularınız varsa, lütfen <a href="/contact" class="text-accent hover:underline">iletişim sayfası</a> 
+          üzerinden bize ulaşın.
+        </p>
+
+        <div class="bg-accent/10 border border-accent/30 rounded-lg p-6 mt-8">
+          <p class="text-sm text-gray-300">
+            <strong class="text-white">Not:</strong> Bu gizlilik politikası genel bir şablondur. 
+            Yasal gereksinimlere tam uyum için bir hukuk uzmanına danışmanız önerilir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+

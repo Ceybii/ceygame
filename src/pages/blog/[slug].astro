@@ -1,0 +1,208 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_CONFIG } from '@lib/config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// JSON-LD for Article
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  image: post.data.image ? `${SITE_CONFIG.url}${post.data.image}` : undefined,
+  datePublished: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Ceygame',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_CONFIG.url}/logo.png`,
+    },
+  },
+};
+---
+
+<BaseLayout
+  seo={{
+    title: post.data.title,
+    description: post.data.description,
+    ogImage: post.data.image,
+    ogType: 'article',
+  }}
+  jsonLd={articleSchema}
+>
+  <Header />
+  
+  <main class="container mx-auto px-4 py-12">
+    <article class="max-w-4xl mx-auto">
+      <!-- Back Button -->
+      <a
+        href="/blog"
+        class="inline-flex items-center text-accent hover:underline mb-8"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Blog'a Dön
+      </a>
+
+      <!-- Article Header -->
+      <header class="mb-8">
+        {/* Tags */}
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {post.data.tags.map((tag) => (
+              <span class="text-sm px-3 py-1 bg-accent/10 text-accent rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          {post.data.title}
+        </h1>
+
+        <div class="flex items-center gap-4 text-gray-400">
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            {post.data.author}
+          </span>
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('tr-TR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+          </span>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      {post.data.image && (
+        <div class="mb-8 rounded-lg overflow-hidden">
+          <img
+            src={post.data.image}
+            alt={post.data.title}
+            class="w-full h-auto"
+          />
+        </div>
+      )}
+
+      <!-- Article Content -->
+      <div class="prose prose-invert prose-lg max-w-none mb-12
+        prose-headings:text-white prose-headings:font-bold
+        prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
+        prose-p:text-gray-300 prose-p:leading-relaxed
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-white prose-strong:font-bold
+        prose-code:text-accent prose-code:bg-dark-surface prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+        prose-pre:bg-dark-surface prose-pre:border prose-pre:border-dark-border
+        prose-ul:text-gray-300 prose-ol:text-gray-300
+        prose-li:marker:text-accent
+        prose-blockquote:border-l-accent prose-blockquote:text-gray-300
+        prose-img:rounded-lg
+      ">
+        <Content />
+      </div>
+
+      <!-- Share & Actions -->
+      <div class="border-t border-dark-border pt-8 mb-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-white font-semibold mb-2">Bu yazıyı paylaş</h3>
+            <div class="flex gap-3">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(SITE_CONFIG.url + '/blog/' + post.slug)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 bg-dark-surface hover:bg-blue-600 rounded-lg transition-colors"
+                aria-label="Twitter'da paylaş"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_CONFIG.url + '/blog/' + post.slug)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 bg-dark-surface hover:bg-blue-700 rounded-lg transition-colors"
+                aria-label="Facebook'ta paylaş"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <a
+            href={SITE_CONFIG.social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors"
+          >
+            YouTube'da Takip Et
+          </a>
+        </div>
+      </div>
+
+      <!-- Comments (Disqus) -->
+      <div class="bg-dark-surface rounded-lg p-8">
+        <h3 class="text-2xl font-bold text-white mb-6">Yorumlar</h3>
+        <div id="disqus_thread"></div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script define:vars={{ shortname: SITE_CONFIG.forum.disqus.shortname }}>
+  if (shortname) {
+    var disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = window.location.pathname;
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = `https://${shortname}.disqus.com/embed.js`;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+</script>
+

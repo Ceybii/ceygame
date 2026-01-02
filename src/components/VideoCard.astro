@@ -1,0 +1,67 @@
+---
+import type { YouTubeVideo } from '@lib/youtube';
+import { formatDate } from '@lib/youtube';
+
+interface Props {
+  video: YouTubeVideo;
+  lazy?: boolean;
+}
+
+const { video, lazy = true } = Astro.props;
+---
+
+<a
+  href={`/videos/${video.id}`}
+  class="group block bg-dark-surface rounded-lg overflow-hidden hover:ring-2 hover:ring-accent transition-all duration-300 hover:scale-[1.02]"
+>
+  <!-- Thumbnail -->
+  <div class="relative aspect-video overflow-hidden bg-dark-border">
+    <img
+      src={video.thumbnail}
+      alt={video.title}
+      loading={lazy ? 'lazy' : 'eager'}
+      width="1280"
+      height="720"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+    
+    <!-- Duration Badge -->
+    {video.duration && (
+      <div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded">
+        {video.duration}
+      </div>
+    )}
+
+    <!-- Play Icon Overlay -->
+    <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
+      <svg
+        class="w-16 h-16 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="p-4">
+    <h3 class="font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors">
+      {video.title}
+    </h3>
+    
+    <div class="flex items-center justify-between text-sm text-gray-400">
+      <span>{formatDate(video.publishedAt)}</span>
+      {video.viewCount && (
+        <span class="flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+          {video.viewCount}
+        </span>
+      )}
+    </div>
+  </div>
+</a>
+

@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main # GitHub branch adınız (main veya master)
+
+# Local development için
+local_backend: true
+
+media_folder: "public/blog" # Görseller buraya yüklenecek
+public_folder: "/blog"
+
+locale: "tr"
+
+collections:
+  # Blog Yazıları
+  - name: "blog"
+    label: "Blog Yazıları"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama", name: "description", widget: "text" }
+      - { label: "Yayın Tarihi", name: "pubDate", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false }
+      - { label: "Yazar", name: "author", widget: "string", default: "Ceybi" }
+      - { label: "Kapak Görseli", name: "image", widget: "image", required: false }
+      - { label: "Etiketler", name: "tags", widget: "list", default: [] }
+      - { label: "Taslak", name: "draft", widget: "boolean", default: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }
+
+  # Site Ayarları (gelecekte eklenebilir)
+  - name: "settings"
+    label: "Site Ayarları"
+    files:
+      - label: "Genel Ayarlar"
+        name: "general"
+        file: "src/content/settings/general.json"
+        fields:
+          - { label: "Site Başlığı", name: "title", widget: "string" }
+          - { label: "Açıklama", name: "description", widget: "text" }
+          - { label: "YouTube Kanal Adı", name: "channelName", widget: "string" }
+
+      - label: "Featured Playlists (Manuel)"
+        name: "playlists"
+        file: "src/content/settings/playlists.json"
+        fields:
+          - label: "Oynatma Listeleri"
+            name: "playlists"
+            widget: "list"
+            fields:
+              - { label: "Playlist ID", name: "id", widget: "string" }
+              - { label: "Başlık", name: "title", widget: "string" }
+              - { label: "Açıklama", name: "description", widget: "text" }
+

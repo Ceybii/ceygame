@@ -1,0 +1,222 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_CONFIG } from '@lib/config';
+---
+
+<BaseLayout
+  seo={{
+    title: 'Forum - Topluluk',
+    description: 'Ceygame topluluğuyla buluş, soru sor, taktikler paylaş ve diğer oyuncularla etkileşime geç.',
+  }}
+>
+  <Header />
+  
+  <main class="container mx-auto px-4 py-12">
+    <!-- Page Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Topluluk Forumu</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        Ceygame topluluğuyla buluş, soru sor, taktikler paylaş ve diğer oyuncularla etkileşime geç.
+      </p>
+    </div>
+
+    <!-- Forum Categories (Static UI) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="bg-dark-surface rounded-lg p-6 border border-dark-border hover:border-accent transition-colors">
+        <div class="flex items-center mb-3">
+          <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white">Genel Sohbet</h3>
+        </div>
+        <p class="text-gray-400 text-sm">Genel oyun konuları ve sohbet</p>
+      </div>
+
+      <div class="bg-dark-surface rounded-lg p-6 border border-dark-border hover:border-accent transition-colors">
+        <div class="flex items-center mb-3">
+          <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white">Taktikler & Stratejiler</h3>
+        </div>
+        <p class="text-gray-400 text-sm">Oyun taktikleri ve ipuçları paylaş</p>
+      </div>
+
+      <div class="bg-dark-surface rounded-lg p-6 border border-dark-border hover:border-accent transition-colors">
+        <div class="flex items-center mb-3">
+          <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white">Yardım & Destek</h3>
+        </div>
+        <p class="text-gray-400 text-sm">Sorularını sor, cevaplar al</p>
+      </div>
+    </div>
+
+    <!-- Forum Embed Container -->
+    <div class="bg-dark-surface rounded-lg p-6 mb-8">
+      <div id="forum-embed">
+        <!-- Forum will be loaded here -->
+      </div>
+    </div>
+
+    <!-- Forum Guidelines -->
+    <div class="bg-dark-surface/50 border border-dark-border rounded-lg p-6">
+      <h2 class="text-2xl font-semibold text-white mb-4">Forum Kuralları</h2>
+      <ul class="space-y-2 text-gray-300">
+        <li class="flex items-start">
+          <svg class="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Saygılı ve nazik olun. Herkesin görüşüne değer verin.</span>
+        </li>
+        <li class="flex items-start">
+          <svg class="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Spam, reklam ve uygunsuz içerik paylaşmayın.</span>
+        </li>
+        <li class="flex items-start">
+          <svg class="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>İçeriklerin doğru kategoride paylaşıldığından emin olun.</span>
+        </li>
+        <li class="flex items-start">
+          <svg class="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Yapıcı geri bildirim verin ve yardımcı olmaya çalışın.</span>
+        </li>
+        <li class="flex items-start">
+          <svg class="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Diğer kullanıcıların kişisel bilgilerini paylaşmayın.</span>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { SITE_CONFIG } from '@lib/config';
+
+  function loadForum() {
+    const container = document.getElementById('forum-embed');
+    if (!container) return;
+
+    const provider = SITE_CONFIG.forum.provider;
+
+    if (provider === 'giscus') {
+      loadGiscus(container);
+    } else if (provider === 'disqus') {
+      loadDisqus(container);
+    } else {
+      container.innerHTML = `
+        <div class="text-center py-12">
+          <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+          <p class="text-gray-400 mb-4">Forum yapılandırılmamış. Lütfen .env dosyanızda forum ayarlarını yapılandırın.</p>
+          <a href="https://github.com/giscus/giscus" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">
+            Giscus Kurulum Rehberi
+          </a>
+        </div>
+      `;
+    }
+  }
+
+  function loadGiscus(container: HTMLElement) {
+    const config = SITE_CONFIG.forum.giscus;
+
+    if (!config.repo || !config.repoId || !config.categoryId) {
+      container.innerHTML = `
+        <div class="text-center py-12">
+          <svg class="w-16 h-16 mx-auto text-yellow-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+          <h3 class="text-xl font-semibold text-white mb-2">Giscus Yapılandırması Gerekli</h3>
+          <p class="text-gray-400 mb-4">Forum özelliğini kullanmak için Giscus ayarlarını yapılandırmanız gerekiyor.</p>
+          <div class="text-left max-w-2xl mx-auto bg-dark-bg rounded-lg p-6">
+            <h4 class="text-white font-semibold mb-3">Giscus Kurulum Adımları:</h4>
+            <ol class="list-decimal list-inside space-y-2 text-gray-300 text-sm">
+              <li>GitHub'da yeni bir public repository oluşturun (örn: ceygame/discussions)</li>
+              <li>Repository Settings > Features > Discussions'ı aktif edin</li>
+              <li><a href="https://github.com/apps/giscus" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">giscus app</a>'ı repository'nize yükleyin</li>
+              <li><a href="https://giscus.app/tr" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">giscus.app</a>'i ziyaret edin ve yapılandırma değerlerini alın</li>
+              <li>.env dosyanıza Giscus değerlerini ekleyin</li>
+            </ol>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', config.repo);
+    script.setAttribute('data-repo-id', config.repoId);
+    script.setAttribute('data-category', config.category);
+    script.setAttribute('data-category-id', config.categoryId);
+    script.setAttribute('data-mapping', config.mapping);
+    script.setAttribute('data-strict', config.strict);
+    script.setAttribute('data-reactions-enabled', config.reactionsEnabled);
+    script.setAttribute('data-emit-metadata', config.emitMetadata);
+    script.setAttribute('data-input-position', config.inputPosition);
+    script.setAttribute('data-theme', config.theme);
+    script.setAttribute('data-lang', config.lang);
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+
+    container.appendChild(script);
+  }
+
+  function loadDisqus(container: HTMLElement) {
+    const config = SITE_CONFIG.forum.disqus;
+
+    if (!config.shortname) {
+      container.innerHTML = `
+        <div class="text-center py-12">
+          <p class="text-gray-400">Disqus shortname yapılandırılmamış.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const disqusDiv = document.createElement('div');
+    disqusDiv.id = 'disqus_thread';
+    container.appendChild(disqusDiv);
+
+    // @ts-ignore
+    window.disqus_config = function () {
+      // @ts-ignore
+      this.page.url = window.location.href;
+      // @ts-ignore
+      this.page.identifier = 'forum';
+    };
+
+    const script = document.createElement('script');
+    script.src = `https://${config.shortname}.disqus.com/embed.js`;
+    script.setAttribute('data-timestamp', String(+new Date()));
+    document.body.appendChild(script);
+  }
+
+  // Load forum on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadForum);
+  } else {
+    loadForum();
+  }
+</script>
+

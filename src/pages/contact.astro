@@ -1,0 +1,257 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_CONFIG } from '@lib/config';
+---
+
+<BaseLayout
+  seo={{
+    title: 'İletişim',
+    description: 'Ceygame ile iletişime geçin. İşbirliği, sponsorluk ve diğer önerileriniz için bize ulaşın.',
+  }}
+>
+  <Header />
+  
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">İletişim</h1>
+        <p class="text-gray-400">
+          Sorularınız, önerileriniz veya işbirliği teklifleriniz için benimle iletişime geçin
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Contact Form -->
+        <div class="bg-dark-surface rounded-lg p-8">
+          <h2 class="text-2xl font-bold text-white mb-6">Mesaj Gönder</h2>
+          
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
+                İsim
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+                placeholder="Adınız Soyadınız"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+                E-posta
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+                placeholder="ornek@email.com"
+              />
+            </div>
+
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">
+                Konu
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+                placeholder="Mesaj konusu"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-300 mb-2">
+                Mesaj
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                class="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+                placeholder="Mesajınızı buraya yazın..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full px-6 py-3 bg-accent hover:bg-accent-dark text-dark-bg rounded-lg font-semibold transition-colors flex items-center justify-center"
+            >
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Gönder
+            </button>
+          </form>
+
+          <div id="form-result" class="mt-4 hidden"></div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="space-y-6">
+          <!-- Social Media -->
+          <div class="bg-dark-surface rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Sosyal Medya</h2>
+            
+            <div class="space-y-4">
+              {SITE_CONFIG.social.youtube && (
+                <a
+                  href={SITE_CONFIG.social.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center p-4 bg-dark-bg rounded-lg hover:bg-dark-border transition-colors group"
+                >
+                  <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-white font-semibold group-hover:text-accent transition-colors">YouTube</div>
+                    <div class="text-gray-400 text-sm">@Ceybi</div>
+                  </div>
+                </a>
+              )}
+
+              {SITE_CONFIG.social.discord && (
+                <a
+                  href={SITE_CONFIG.social.discord}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center p-4 bg-dark-bg rounded-lg hover:bg-dark-border transition-colors group"
+                >
+                  <div class="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-white font-semibold group-hover:text-accent transition-colors">Discord</div>
+                    <div class="text-gray-400 text-sm">Sunucumuza katıl</div>
+                  </div>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="bg-dark-surface rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-white mb-6">İletişim Bilgileri</h2>
+            
+            <div class="space-y-4 text-gray-300">
+              <p class="flex items-start">
+                <svg class="w-6 h-6 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-sm">
+                  <strong class="text-white">İşbirliği & Sponsorluk:</strong><br />
+                  İşbirliği teklifleri ve sponsorluk önerileri için yukarıdaki formu kullanabilirsiniz.
+                </span>
+              </p>
+              
+              <p class="flex items-start">
+                <svg class="w-6 h-6 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-sm">
+                  <strong class="text-white">Yanıt Süresi:</strong><br />
+                  Genellikle 24-48 saat içinde yanıt veriyorum.
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Hint -->
+          <div class="bg-accent/10 border border-accent/30 rounded-lg p-6">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+              <div>
+                <h3 class="text-white font-semibold mb-2">İpucu</h3>
+                <p class="text-sm text-gray-300">
+                  Genel sorularınız için önce <a href="/forum" class="text-accent hover:underline">forum</a> bölümüne göz atın. 
+                  Topluluğumuz size hızlıca yardımcı olabilir!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const resultDiv = document.getElementById('form-result');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+
+    // Default: mailto link (statik hosting için)
+    const mailtoLink = `mailto:contact@ceygame.com?subject=${encodeURIComponent(String(subject))}&body=${encodeURIComponent(`İsim: ${name}\nE-posta: ${email}\n\nMesaj:\n${message}`)}`;
+    
+    window.location.href = mailtoLink;
+
+    // Show success message
+    if (resultDiv) {
+      resultDiv.className = 'mt-4 p-4 bg-green-500/10 border border-green-500/50 rounded-lg text-green-400';
+      resultDiv.textContent = 'E-posta uygulamanız açılıyor...';
+      resultDiv.classList.remove('hidden');
+    }
+
+    // Alternatif: Formspree veya benzeri servis kullanmak isterseniz
+    // Aşağıdaki kodu uncomment edin ve Formspree endpoint'inizi ekleyin:
+    
+    /*
+    try {
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        if (resultDiv) {
+          resultDiv.className = 'mt-4 p-4 bg-green-500/10 border border-green-500/50 rounded-lg text-green-400';
+          resultDiv.textContent = 'Mesajınız başarıyla gönderildi! En kısa sürede yanıt vereceğim.';
+          resultDiv.classList.remove('hidden');
+        }
+        form.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      if (resultDiv) {
+        resultDiv.className = 'mt-4 p-4 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400';
+        resultDiv.textContent = 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
+        resultDiv.classList.remove('hidden');
+      }
+    }
+    */
+  });
+</script>
+

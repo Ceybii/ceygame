@@ -1,0 +1,184 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_CONFIG } from '@lib/config';
+---
+
+<BaseLayout
+  seo={{
+    title: 'Hakkımda',
+    description: 'Ceygame hakkında bilgi. FPS ve rekabetçi oyun içerikleri üzerine uzmanlaşmış Türk gaming kanalı.',
+  }}
+>
+  <Header />
+  
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Hero -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Hakkımda</h1>
+        <p class="text-xl text-gray-400">
+          FPS Tutkunları İçin İçerik Üretiyorum
+        </p>
+      </div>
+
+      <!-- Main Content -->
+      <div class="bg-dark-surface rounded-lg p-8 mb-8">
+        <div class="prose prose-invert max-w-none">
+          <h2 class="text-3xl font-bold text-white mb-4">Merhaba! 👋</h2>
+          
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Ben Ceybi. FPS ve rekabetçi oyunlar üzerine içerik üreten bir gaming içerik üreticisiyim. 
+            Yıllardır Valorant, CS2 ve diğer FPS oyunlarında aktif olarak oynuyor ve deneyimlerimi 
+            topluluğumla paylaşıyorum.
+          </p>
+
+          <h3 class="text-2xl font-bold text-white mb-3 mt-8">🎮 Neler Yapıyorum?</h3>
+          
+          <div class="grid md:grid-cols-2 gap-6 my-6">
+            <div class="bg-dark-bg rounded-lg p-6">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-white">Taktik Videoları</h4>
+              </div>
+              <p class="text-gray-400 text-sm">
+                Pro oyuncuların kullandığı taktikleri analiz edip, herkesin anlayabileceği şekilde paylaşıyorum.
+              </p>
+            </div>
+
+            <div class="bg-dark-bg rounded-lg p-6">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-white">Highlight Montajları</h4>
+              </div>
+              <p class="text-gray-400 text-sm">
+                En iyi oyun anlarımı, clutch'ları ve ace'leri özenle montajlıyorum.
+              </p>
+            </div>
+
+            <div class="bg-dark-bg rounded-lg p-6">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-white">Eğitim İçerikleri</h4>
+              </div>
+              <p class="text-gray-400 text-sm">
+                Yeni başlayanlardan ileri seviye oyunculara kadar herkes için rehberler hazırlıyorum.
+              </p>
+            </div>
+
+            <div class="bg-dark-bg rounded-lg p-6">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-white">Topluluk Etkileşimi</h4>
+              </div>
+              <p class="text-gray-400 text-sm">
+                Topluluğumla aktif olarak iletişim halindeyim ve geri bildirimlere önem veriyorum.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold text-white mb-3 mt-8">🎯 Misyonum</h3>
+          
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Türk gaming topluluğuna kaliteli, eğitici ve eğlenceli içerikler sunmak. 
+            Her seviyeden oyuncunun gelişmesine yardımcı olmak ve gaming kültürünü yaymak.
+          </p>
+
+          <h3 class="text-2xl font-bold text-white mb-3 mt-8">🏆 Uzmanlık Alanlarım</h3>
+          
+          <ul class="space-y-3 my-6">
+            <li class="flex items-start text-gray-300">
+              <svg class="w-6 h-6 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span><strong class="text-white">Valorant:</strong> Ajan mekanikleri, map bilgisi, ekonomi yönetimi</span>
+            </li>
+            <li class="flex items-start text-gray-300">
+              <svg class="w-6 h-6 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span><strong class="text-white">CS2:</strong> Spray kontrol, utility kullanımı, positioning</span>
+            </li>
+            <li class="flex items-start text-gray-300">
+              <svg class="w-6 h-6 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span><strong class="text-white">Genel FPS:</strong> Aim geliştirme, game sense, iletişim</span>
+            </li>
+          </ul>
+
+          <h3 class="text-2xl font-bold text-white mb-3 mt-8">📊 İstatistikler</h3>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+            <div class="bg-dark-bg rounded-lg p-4 text-center">
+              <div class="text-3xl font-bold text-accent mb-1">500+</div>
+              <div class="text-sm text-gray-400">Videolar</div>
+            </div>
+            <div class="bg-dark-bg rounded-lg p-4 text-center">
+              <div class="text-3xl font-bold text-accent mb-1">50K+</div>
+              <div class="text-sm text-gray-400">Aboneler</div>
+            </div>
+            <div class="bg-dark-bg rounded-lg p-4 text-center">
+              <div class="text-3xl font-bold text-accent mb-1">1M+</div>
+              <div class="text-sm text-gray-400">Görüntülenme</div>
+            </div>
+            <div class="bg-dark-bg rounded-lg p-4 text-center">
+              <div class="text-3xl font-bold text-accent mb-1">5+</div>
+              <div class="text-sm text-gray-400">Yıl</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-gradient-to-r from-accent/20 via-primary-600/20 to-accent/20 rounded-lg p-8 text-center">
+        <h2 class="text-2xl font-bold text-white mb-4">Benimle İletişime Geç</h2>
+        <p class="text-gray-300 mb-6">
+          İşbirliği önerileri, sponsorluk veya genel sorularınız için:
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-6 py-3 bg-accent hover:bg-accent-dark text-dark-bg rounded-lg font-semibold transition-colors"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            İletişim
+          </a>
+          <a
+            href={SITE_CONFIG.social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
