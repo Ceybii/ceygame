@@ -39,7 +39,8 @@
     document.addEventListener('DOMContentLoaded', function() {
       const config = {
         backend: {
-          name: 'test-repo'
+          name: 'git-gateway',
+          branch: 'main'
         },
         media_folder: 'public/blog',
         public_folder: '/blog',
@@ -65,21 +66,18 @@
         ]
       };
       
-      window.CMS.init({ config: config });
-      
-      console.log('Decap CMS initialized with inline config');
+      if (window.CMS) {
+        window.CMS.init({ config: config });
+        console.log('Decap CMS initialized with Git Gateway');
+      }
     });
     
-    // Local development için otomatik giriş
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      console.log('Local development mode - CMS loading...');
-    }
-    
+    // Netlify Identity handling
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin";
+            document.location.href = "/admin/";
           });
         }
       });
