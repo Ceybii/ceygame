@@ -71,6 +71,9 @@ const ogImage = metadata.ogImage ? `${SITE_CONFIG.url}${metadata.ogImage}` : `${
     <link rel="preconnect" href="https://www.googleapis.com" />
     <link rel="preconnect" href="https://www.youtube.com" />
     <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body class="bg-dark-bg text-dark-text antialiased">
     <slot />
@@ -145,4 +148,17 @@ const ogImage = metadata.ogImage ? `${SITE_CONFIG.url}${metadata.ogImage}` : `${
     background: #2a3447;
   }
 </style>
+
+<script is:inline>
+  // Netlify Identity redirect handling
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 
