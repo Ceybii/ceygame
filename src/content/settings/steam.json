@@ -1,0 +1,109 @@
+{
+  "updatedAt": "2026-01-03T18:52:57.284Z",
+  "cc": "tr",
+  "language": "turkish",
+  "category": "top_sellers",
+  "categoryName": "ÇOK SATANLAR",
+  "items": [
+    {
+      "appid": 1808500,
+      "name": "ARC Raiders",
+      "final_price": 3199,
+      "original_price": 3999,
+      "discount_percent": 20,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1808500/b26e2a315d32ef462a07cf0e36eb06a2b810d0c9/header_alt_assets_0.jpg?t=1765441443",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1808500/542a243d39bd7ed791359be9e96c82f419b81475/capsule_184x69_alt_assets_0.jpg?t=1765441443"
+    },
+    {
+      "appid": 3405690,
+      "name": "EA SPORTS FC™ 26",
+      "final_price": 2799,
+      "original_price": 6999,
+      "discount_percent": 60,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405690/2d96aa1b06e453cd62dae9029d412f19e61932c3/header.jpg?t=1765797265",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405690/abca0fd9695521a046d407327d82f808162315f7/capsule_184x69.jpg?t=1765797265"
+    },
+    {
+      "appid": 54029,
+      "name": "Seçkin Durumu Yükseltmesi",
+      "final_price": 1499,
+      "original_price": 1499,
+      "discount_percent": 0,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/subs/54029/header_ratio.jpg?t=1713988570",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/subs/54029/capsule_184x69.jpg?t=1713988570"
+    },
+    {
+      "appid": 3240220,
+      "name": "Grand Theft Auto V Enhanced",
+      "final_price": 1499,
+      "original_price": 2999,
+      "discount_percent": 50,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1765479644",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/a318bd9affe8eee32984b18794b273c256e9b2d6/capsule_184x69.jpg?t=1765479644"
+    },
+    {
+      "appid": 3240220,
+      "name": "Grand Theft Auto V Enhanced",
+      "final_price": 1499,
+      "original_price": 2999,
+      "discount_percent": 50,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1765479644",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/a318bd9affe8eee32984b18794b273c256e9b2d6/capsule_184x69.jpg?t=1765479644"
+    },
+    {
+      "appid": 1174180,
+      "name": "Red Dead Redemption 2",
+      "final_price": 1499,
+      "original_price": 5999,
+      "discount_percent": 75,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg?t=1759502961",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/capsule_184x69.jpg?t=1759502961"
+    },
+    {
+      "appid": 1326470,
+      "name": "Sons Of The Forest",
+      "final_price": 464,
+      "original_price": 1499,
+      "discount_percent": 69,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1326470/header.jpg?t=1708624856",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1326470/capsule_184x69.jpg?t=1708624856"
+    },
+    {
+      "appid": 3949040,
+      "name": "RV There Yet?",
+      "final_price": 404,
+      "original_price": 449,
+      "discount_percent": 10,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3949040/cae24b4ed7f4531be51f0d63f785b7d253f92dc3/header.jpg?t=1766020280",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3949040/05b77bc86d227612ded8e54753063e43c44698c4/capsule_184x69.jpg?t=1766020280"
+    },
+    {
+      "appid": 1245620,
+      "name": "ELDEN RING",
+      "final_price": 2599,
+      "original_price": 3999,
+      "discount_percent": 35,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1748630546",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/capsule_184x69.jpg?t=1748630546"
+    },
+    {
+      "appid": 1086940,
+      "name": "Baldur's Gate 3",
+      "final_price": 2624,
+      "original_price": 3499,
+      "discount_percent": 25,
+      "currency": "USD",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1765505948",
+      "small_capsule_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/3dd81008e9c385caf68152450c22353f6a8abec9/capsule_184x69.jpg?t=1765505948"
+    }
+  ]
+}
